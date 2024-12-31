@@ -148,6 +148,23 @@ void freeTree(struct Tree *root)
     }
 }
 
+void searchNode(struct Tree *root , int value)
+{
+    if (root == NULL)
+    {
+        printf("%d not found \n",value);
+        return;
+    }
+    if (value < root->data)
+        searchNode(root->left,value);
+    else if (value > root->data)
+        searchNode(root->right,value);
+    else {
+        printf("%d found successfully \n",root->data);
+        return;
+    }
+}
+
 //************AVL*********
 
 int getHeight(struct Tree *root)

@@ -5,34 +5,72 @@
 int main()
 {
     struct Tree *root = NULL;
-
     int nodeValue;
-    char choice;
+    int choice;
 
-    do
-    {
-        printf("Input a value to insert into the binary tree: ");
-        scanf("%d", &nodeValue);
+    do {
+        // Menu
+        printf("\nMenu:\n");
+        printf("1. Add Node\n");
+        printf("2. Search for a Node\n");
+        printf("3. Delete Node\n");
+        printf("4. Display the content of the tree\n");
+        printf("5. Exit\n");
+        printf("Choice: ");
+        scanf("%d", &choice);
 
-        root = insertNode(root, nodeValue);
+        switch (choice) {
+            case 1: {
+                printf("Enter the value: ");
+                scanf("%d", &nodeValue);
+                root = insertNode(root, nodeValue);
+                break;
+            }
 
-        printf("Want to insert another node? (y/n): ");
-        scanf(" %c", &choice);
+            case 2: {
+                printf("Enter the value of the node: ");
+                scanf("%d", &nodeValue);
+                searchNode(root, nodeValue);
+                break;
+            }
 
-    } while (choice == 'y' || choice == 'Y');
+            case 3: {
+                printf("Enter the value: ");
+                scanf("%d", &nodeValue);
+                if (nodeValue < root->data)
+                    root = deleteNodeWithPrecedecessor(root, nodeValue);
+                else if (nodeValue > root->data)
+                    root = deleteNodeWithSuccessor(root, nodeValue);
+                else
+                {
+                    root = deleteNodeWithSuccessor(root->right, nodeValue);
+                }
+                break;
+            }
 
-    printf("\nIn-order Traversal of the Binary Tree: ");
-    inOrderTraversal(root);
-    printf("\n");
+            case 4:
+                if (root == NULL) {
+                    printf("The tree is empty.\n");
+                } else {
+                    printf("Tree contents: ");
+                    inOrderTraversal(root);
+                    printf("\n");
+                }
+            break;
 
-    do
-    {
-        printf("Input a value to deleted into the binary tree: ");
-        scanf("%d", &nodeValue);
-        printf("Want to insert another node? (y/n): ");
-        scanf(" %c", &choice);
+            case 5:
+                printf("Goodbye.\n");
+            break;
 
-    } while (choice == 'y' || choice == 'Y');
+            default:
+                printf("Invalid choice.\n");
+        }
+
+        printf("Press enter to continue ...");
+        getchar();
+        getchar();
+
+    } while (choice != 5);
 
     freeTree(root);
     return 0;
