@@ -10,13 +10,13 @@ int main()
 
     do {
         // Menu
-        printf("\nMenu:\n");
-        printf("1. Add Node\n");
-        printf("2. Search for a Node\n");
-        printf("3. Delete Node\n");
-        printf("4. Display the content of the tree\n");
-        printf("5. Exit\n");
-        printf("Choice: ");
+        printf("\033[1;34m\nMenu:\033[0m\n");
+        printf("\033[1;32m1. Add Node\033[0m\n");
+        printf("\033[1;32m2. Search for a Node\033[0m\n");
+        printf("\033[1;32m3. Delete Node\033[0m\n");
+        printf("\033[1;32m4. Display the content of the tree\033[0m\n");
+        printf("\033[1;32m5. Exit\033[0m\n");
+        printf("\033[1;34mChoice: \033[0m");
         scanf("%d", &choice);
 
         switch (choice) {
